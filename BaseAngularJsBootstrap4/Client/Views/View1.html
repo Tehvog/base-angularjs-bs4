@@ -1,0 +1,156 @@
+﻿<div class="container">
+    <form>
+        <h1>Cheese - {{ vm.title }}</h1>
+        <br/>
+
+        <fieldset class="form-group">
+            <div class="row">
+                <div class="col">
+                    <label for="filter">Filter</label>
+                    <input id="filter" type="text" class="col-4 form-control-inline" ng-model="filterPattern"/>
+                </div>
+            </div>
+        </fieldset>
+
+        <ul>
+            <li ng-repeat="cheese in vm.cheeses | filter:filterPattern | orderBy:'Name'">
+                {{ cheese.name }} (texture: {{ cheese.texture }})
+            </li>
+        </ul>
+
+        <hr/>
+
+        <fieldset class="form-group">
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <label for="fromDate">From</label>
+                            <input id="fromDate" type="text" class="form-control" placeholder="dd/mm/yyyy" moment-picker="fromDate" ng-model="fromDate" format="DD/MM/YYYY">
+                            <!--<input id="fromDate" type="text" class="form-control" placeholder="dd/mm/yyyy"/>-->
+                        </div>
+                        <div class="col">
+                            <label for="fromTime">&nbsp;</label>
+                            <input id="fromTime" type="text" class="form-control" placeholder="--:--" moment-picker="fromTime" ng-model="fromTime" format="h:mm a" start-view="day" show-header="false">
+                            <!--<input id="fromTime" type="text" class="form-control" placeholder="--:-- am/pm"/>-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <label for="toDate">To</label>
+                            <input id="toDate" type="text" class="form-control" placeholder="dd/mm/yyyy"/>
+                        </div>
+                        <div class="col">
+                            <label for="toTime">&nbsp;</label>
+                            <input id="toTime" type="text" class="form-control" placeholder="--:-- am/pm"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">Boots</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck2">
+                <label class="custom-control-label" for="customCheck2">Cats</label>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <select class="custom-select">
+                <option selected>Choose One...</option>
+                <option value="1">Ham</option>
+                <option value="2">Cheese</option>
+                <option value="3">Tomato</option>
+            </select>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline1">Boots</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline2">Cats</label>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                <div class="input-group-append">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="" data-toggle="modal" data-target="#newCheesePopup">Create New</a>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <hr/>
+
+        <h3>Create New Cheese</h3>
+
+        <fieldset class="form-group">
+            <label for="cheese">Name</label>
+            <input id="cheese" type="text" class="form-control" placeholder="" ng-model="newCheese.name"/>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="texture">Texture</label>
+            <input id="texture" type="text" class="form-control" placeholder="Comma separated list (crumbly, dense, etc)" ng-model="newCheese.texture"/>
+        </fieldset>
+
+        <button class="btn btn-primary" ng-click="addCheese()">Add Cheese</button>
+
+    </form>
+
+    <br/>
+    <a href="#/view2">View 2</a>
+
+</div>
+
+<!-- The modal -->
+<div class="modal" id="newCheesePopup" tabindex="-1" role="dialog" aria-labelledby="modalLabelLarge" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalLabelLarge">Create New Cheese</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <fieldset class="form-group">
+                    <label for="cheesePop">Name</label>
+                    <input id="cheesePop" type="text" class="form-control" placeholder="" ng-model="newCheese.name" />
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="texturePop">Texture</label>
+                    <input id="texturePop" type="text" class="form-control" placeholder="Comma separated list (crumbly, dense, etc)" ng-model="newCheese.texture"/>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="fromDate">From</label>
+                    <input id="fromDate" type="text" class="form-control" placeholder="dd/mm/yyyy" moment-picker="fromDate" ng-model="fromDate" format="DD/MM/YYYY">
+                </fieldset>
+
+                <button class="btn btn-primary" data-dismiss="modal" ng-click="addCheese()">Add Cheese</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
