@@ -10,3 +10,13 @@ There's a gulp file that concatenates all the AngularJS files into one app.js fi
 
 
 TODO: Remove WebGrease and the native MVC bundling and tidy up scripts.
+
+## Setup
+
+Clone the repo and then change directory into the Client folder.
+
+npm install
+gulp build
+
+
+You can also gulp watch while you're editing the javascript files.
