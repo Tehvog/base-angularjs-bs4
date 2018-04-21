@@ -15,8 +15,9 @@ TODO: Remove WebGrease and the native MVC bundling and tidy up scripts.
 
 Clone the repo and then change directory into the Client folder.
 
-npm install
-gulp build
+
+	npm install
+	gulp build
 
 
 You can also gulp watch while you're editing the javascript files.
